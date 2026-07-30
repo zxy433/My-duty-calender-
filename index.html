@@ -1,1 +1,64 @@
 <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Duty Calendar</title>
+</head>
+
+<body style="font-family:Arial;text-align:center;background:#f5f5f5;">
+
+<h2>📅 My Duty Calendar</h2>
+
+<p>💰 Daily Salary: ₹600</p>
+
+<input type="date" id="date">
+<br><br>
+
+<button onclick="duty()">✅ Duty</button>
+
+<button onclick="holiday()">🏖 Holiday</button>
+
+<h3>Total Duty:
+<span id="dutycount">0</span>
+</h3>
+
+<h3>Total Holiday:
+<span id="holidaycount">0</span>
+</h3>
+
+<h3>Total Salary:
+₹<span id="salary">0</span>
+</h3>
+
+<script>
+
+let dutyDays=0;
+let holidayDays=0;
+
+function duty(){
+dutyDays++;
+document.getElementById("dutycount").innerHTML=dutyDays;
+document.getElementById("salary").innerHTML=dutyDays*600;
+localStorage.setItem("duty",dutyDays);
+}
+
+function holiday(){
+holidayDays++;
+document.getElementById("holidaycount").innerHTML=holidayDays;
+localStorage.setItem("holiday",holidayDays);
+}
+
+window.onload=function(){
+dutyDays=Number(localStorage.getItem("duty"))||0;
+holidayDays=Number(localStorage.getItem("holiday"))||0;
+
+document.getElementById("dutycount").innerHTML=dutyDays;
+document.getElementById("holidaycount").innerHTML=holidayDays;
+document.getElementById("salary").innerHTML=dutyDays*600;
+}
+
+</script>
+
+</body>
+</html>
